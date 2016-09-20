@@ -29,12 +29,13 @@ class ViewController: UIViewController {
         mask = UIView(frame: image1.bounds)
 
         var flag = 1
-        for i in Range(start: 0, end: 2) {
-            for j in Range(start: 0, end: 5) {
+        for i in 0..<2 {
+            for j in 0..<5 {
                 
                 let temp = UIView(frame:CGRectMake(CGFloat(i)*100,CGFloat(j)*100,100,100))
                 temp.backgroundColor = UIColor.yellowColor()
-                temp.tag = flag++
+                flag += 1
+                temp.tag = flag
                 mask.addSubview(temp)
             }
         }
@@ -46,8 +47,8 @@ class ViewController: UIViewController {
 
     var flag1 = 1
     func testAnimation() {
-        
-        let show = image1.maskView?.viewWithTag(flag1++)
+        flag1 += 1
+        let show = image1.maskView?.viewWithTag(flag1)
         UIView.animateWithDuration(0.6, delay: 0, options: .CurveLinear, animations: { () -> Void in
             show?.alpha = abs(show!.alpha - 1)
             }, completion: { (finish) -> Void in
